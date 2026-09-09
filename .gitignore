@@ -18,3 +18,5 @@ Thumbs.db
 **/.learner-output/
 **/.pytest_cache/
 .codex_review_tmp*/
+.agents/
+*ponytail*

@@ -5,22 +5,29 @@ Mục tiêu: Thành thạo truy cập và cắt chuỗi
 """
 
 # TODO 1: Cho s = "Python Journey"
-# In ra: ký tự đầu, ký tự cuối (dùng index âm), 5 ký tự đầu
 s = "Python Journey"
+print("Ký tự đầu:", s[0])        # -> 'P'
+print("Ký tự cuối:", s[-1])      # -> 'y'
+print("5 ký tự đầu:", s[:5])     # -> 'Pytho'
 
-
-# TODO 2: Dùng slicing để:
-# a) Lấy "Journey" từ s
-# b) Đảo ngược chuỗi s
-# c) Lấy mỗi ký tự thứ 2 từ s
-
+# TODO 2: Dùng slicing
+print("a)", s[7:])               # -> 'Journey'
+print("b)", s[::-1])             # -> 'yenruoJ nohtyP'
+print("c)", s[::2])              # -> 'Pto ore'
 
 # TODO 3: Nhập CCCD (12 chữ số)
-# In ra: mã tỉnh (2 số đầu), giới tính (số thứ 3), năm sinh (2 số tiếp)
-# Ví dụ: "001099012345" → Tỉnh: 00, Giới tính: 1, Năm sinh: 099
+cccd = input("Nhập CCCD (12 chữ số): ").strip()
+while not (cccd.isdigit() and len(cccd) == 12):
+    cccd = input("CCCD phải gồm đúng 12 chữ số, nhập lại: ").strip()
 
+print(f"Mã tỉnh: {cccd[:3]}, Giới tính: {cccd[3]}, Năm sinh: {cccd[4:6]}")
+# -> Kết quả mẫu ('079099012345'): Mã tỉnh: 079, Giới tính: 0, Năm sinh: 99
 
 # TODO 4 (Thử thách): Kiểm tra chuỗi đối xứng (palindrome)
-# Nhập chuỗi, kiểm tra có đọc xuôi ngược giống nhau không
-# "racecar" → True, "hello" → False
-# Gợi ý: So sánh s với s[::-1]
+text = input("Nhập chuỗi kiểm tra palindrome: ").strip()
+while not text:
+    text = input("Chuỗi không được rỗng, nhập lại: ").strip()
+
+clean = "".join(c.lower() for c in text if c.isalnum())
+print("Đối xứng:", clean == clean[::-1])
+# -> Kết quả mẫu ('racecar'): Đối xứng: True

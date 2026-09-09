@@ -14,29 +14,29 @@ Learn → Build → Test → Debug → Improve → Commit → Prove
 
 ## Tuần 01 — Environment · REPL · Terminal · Git/GitHub · Hello Python
 
-- [ ] Chuẩn bị Python >= 3.12
-- [ ] Chạy được Python từ terminal
-- [ ] Dùng REPL và chạy file `.py`
-- [ ] Viết chương trình đầu tiên
-- [ ] Đọc được một lỗi cơ bản thay vì bỏ qua
+- [x] Chuẩn bị Python >= 3.12
+- [x] Chạy được Python từ terminal
+- [x] Dùng REPL và chạy file `.py`
+- [x] Viết chương trình đầu tiên
+- [x] Đọc được một lỗi cơ bản thay vì bỏ qua
 - [ ] Commit tiến độ lên GitHub
 
 ## Tuần 02 — Variables · Types · Input/Output
 
-- [ ] Dùng biến và tên rõ nghĩa
-- [ ] Phân biệt `int`, `float`, `str`, `bool`
-- [ ] Dùng `input()` và type conversion
-- [ ] Xử lý một trường hợp input sai
-- [ ] Hoàn thành bài tập/mini-project tuần
+- [x] Dùng biến và tên rõ nghĩa
+- [x] Phân biệt `int`, `float`, `str`, `bool`
+- [x] Dùng `input()` và type conversion
+- [x] Xử lý một trường hợp input sai
+- [x] Hoàn thành bài tập/mini-project tuần
 - [ ] Commit tiến độ
 
 ## Tuần 03 — Conditionals · Boolean · Input validation
 
-- [ ] Dùng `if/elif/else`
-- [ ] Dùng toán tử so sánh và logic
-- [ ] Hiểu truthy/falsy ở mức cơ bản
-- [ ] Validate input trước khi xử lý
-- [ ] Hoàn thành bài tập/mini-project tuần
+- [x] Dùng `if/elif/else`
+- [x] Dùng toán tử so sánh và logic
+- [x] Hiểu truthy/falsy ở mức cơ bản
+- [x] Validate input trước khi xử lý
+- [x] Hoàn thành bài tập/mini-project tuần
 - [ ] Commit tiến độ
 
 ---
@@ -45,30 +45,30 @@ Learn → Build → Test → Debug → Improve → Commit → Prove
 
 ## Tuần 04 — Strings · Text processing · Regex mini-lab
 
-- [ ] Indexing và slicing
-- [ ] String methods quan trọng
-- [ ] f-string
-- [ ] Biết khi string methods là đủ
-- [ ] Hoàn thành regex mini-lab cơ bản
-- [ ] Hoàn thành Text Analyzer hoặc bài tương đương
+- [x] Indexing và slicing
+- [x] String methods quan trọng
+- [x] f-string
+- [x] Biết khi string methods là đủ
+- [x] Hoàn thành regex mini-lab cơ bản
+- [x] Hoàn thành Text Analyzer hoặc bài tương đương
 
 ## Tuần 05 — Lists · Tuples · Mutability · Unpacking
 
-- [ ] CRUD trên list
-- [ ] Slicing
-- [ ] Tuple và unpacking
-- [ ] Hiểu mutable vs immutable
-- [ ] Dùng comprehension đơn giản khi phù hợp
-- [ ] Hoàn thành mini-project tuần
+- [x] CRUD trên list
+- [x] Slicing
+- [x] Tuple và unpacking
+- [x] Hiểu mutable vs immutable
+- [x] Dùng comprehension đơn giản khi phù hợp
+- [x] Hoàn thành mini-project tuần
 
 ## Tuần 06 — Loops · enumerate · zip · comprehensions
 
-- [ ] `for`
-- [ ] `while`
-- [ ] `break` / `continue`
-- [ ] `enumerate()`
-- [ ] `zip()`
-- [ ] Hoàn thành bài toán lặp có cấu trúc
+- [x] `for`
+- [x] `while`
+- [x] `break` / `continue`
+- [x] `enumerate()`
+- [x] `zip()`
+- [x] Hoàn thành bài toán lặp có cấu trúc
 
 ## Tuần 07 — Functions · Decomposition · Scope · Type hints
 

@@ -2,44 +2,37 @@
 Bài tập 01: Hello Python! 🐍
 ================================
 Mục tiêu: Làm quen với hàm print()
-
-Hãy hoàn thành các TODO bên dưới.
-Chạy file này bằng: python ex01_hello.py
 """
 
 # TODO 1: In ra dòng chữ "Hello, World!"
-# Viết code ở đây:
-
+print("Hello, World!")
+# -> Kết quả: Hello, World!
 
 # TODO 2: In ra tên của bạn trên một dòng riêng
-# Viết code ở đây:
-
+print("Lê Thanh Phi Vũ")
+# -> Kết quả: Lê Thanh Phi Vũ
 
 # TODO 3: In ra 3 điều bạn thích, mỗi điều trên một dòng
-# Ví dụ:
-# Tôi thích ăn phở
-# Tôi thích nghe nhạc
-# Tôi thích code Python
-# Viết code ở đây:
-
+print("Thích xem phim\nThích lập trình Python\nThích chơi game")
+# -> Kết quả:
+# Thích xem phim
+# Thích lập trình Python
+# Thích chơi game
 
 # TODO 4: In ra một hình chữ nhật bằng dấu *
-# Kết quả mong muốn:
+print("*****\n*   *\n*   *\n*****")
+# -> Kết quả:
 # *****
 # *   *
 # *   *
 # *****
-# Viết code ở đây:
-
 
 # TODO 5 (Thử thách): In ra tên bạn bằng ký tự đặc biệt
-# Ví dụ nếu tên là "HI":
-# H   H  III
-# H   H   I
-# HHHHH   I
-# H   H   I
-# H   H  III
-# Viết code ở đây:
-
+print("V     V  U   U\n V   V   U   U\n  V V    U   U\n   V      UUU")
+# -> Kết quả:
+# V     V  U   U
+#  V   V   U   U
+#   V V    U   U
+#    V      UUU
 
 print("\n🎉 Chúc mừng! Bạn đã hoàn thành bài tập đầu tiên!")
