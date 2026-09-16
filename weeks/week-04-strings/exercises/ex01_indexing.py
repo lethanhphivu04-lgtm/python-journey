@@ -17,17 +17,11 @@ print("c)", s[::2])              # -> 'Pto ore'
 
 # TODO 3: Nhập CCCD (12 chữ số)
 cccd = input("Nhập CCCD (12 chữ số): ").strip()
-while not (cccd.isdigit() and len(cccd) == 12):
-    cccd = input("CCCD phải gồm đúng 12 chữ số, nhập lại: ").strip()
-
 print(f"Mã tỉnh: {cccd[:3]}, Giới tính: {cccd[3]}, Năm sinh: {cccd[4:6]}")
 # -> Kết quả mẫu ('079099012345'): Mã tỉnh: 079, Giới tính: 0, Năm sinh: 99
 
 # TODO 4 (Thử thách): Kiểm tra chuỗi đối xứng (palindrome)
 text = input("Nhập chuỗi kiểm tra palindrome: ").strip()
-while not text:
-    text = input("Chuỗi không được rỗng, nhập lại: ").strip()
-
-clean = "".join(c.lower() for c in text if c.isalnum())
+clean = "".join(text.lower().split())
 print("Đối xứng:", clean == clean[::-1])
 # -> Kết quả mẫu ('racecar'): Đối xứng: True

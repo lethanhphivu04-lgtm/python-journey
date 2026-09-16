@@ -37,7 +37,7 @@ print(f"Mã tỉnh: {cccd[:3]}, Giới tính: {cccd[3]}, Năm sinh: {cccd[4:6]}"
 
 # Kiểm tra chuỗi đối xứng (Palindrome)
 text = input("Nhập chuỗi kiểm tra palindrome: ").strip()
-clean = "".join(c.lower() for c in text if c.isalnum())
+clean = "".join(text.lower().split())
 print("Đối xứng:", clean == clean[::-1])
 ```
 
@@ -150,6 +150,20 @@ first_number = match.group() if match else None
 # Kiểm tra mã tuần hợp lệ (chữ W kèm 2 chữ số)
 candidate = "W04"
 is_week_code = bool(re.fullmatch(r"W\d{2}", candidate))
+
+# 4. Mini-project: Phân tích văn bản (Text Analyzer)
+text_input = input("Text: ").strip()
+if not text_input:
+    print("Text không được rỗng")
+else:
+    normalized = " ".join(text_input.lower().split())
+    words = normalized.split()
+    pj_codes = re.findall(r"PJ-\d{3}", text_input)
+    print(f"normalized={normalized}")
+    print(f"characters={len(normalized)}")
+    print(f"words={len(words)}")
+    print(f"python_count={normalized.count('python')}")
+    print(f"course_codes={pj_codes}")
 ```
 
 Giải thích:

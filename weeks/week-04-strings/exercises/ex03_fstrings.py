@@ -33,14 +33,8 @@ print("===========================")
 # -> Kết quả: Các cột chữ và số được căn lề thẳng tắp
 
 # TODO 4 (Thử thách): Tạo progress bar bằng f-string
-while True:
-    raw = input("Nhập phần trăm (0-100): ").strip()
-    if raw.isdigit() and 0 <= int(raw) <= 100:
-        pct = int(raw)
-        break
-    print("Vui lòng nhập số nguyên từ 0 đến 100!")
-
-filled = int(pct / 100 * 20)
+pct = int(input("Nhập phần trăm (0-100): "))
+filled = pct // 5
 empty = 20 - filled
 print(f"[{'█' * filled}{'░' * empty}] {pct}%")
 # -> Kết quả mẫu (40%): [████████░░░░░░░░░░░░] 40%

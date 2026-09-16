@@ -207,58 +207,35 @@ Giải thích:
 
 ### Mini-project: Kiểm tra dữ liệu đầu vào vé xem phim (mini-project/starter.py)
 
-Mục đích: Không tin tưởng bất kỳ thứ gì người dùng nhập vào. Luôn kiểm tra tính hợp lệ trước khi quyết định in vé.
+Mục đích: Không tin tưởng bất kỳ thứ gì người dùng nhập vào. Luôn kiểm tra tính hợp lệ trước khi quyết định in vé theo kỹ thuật chặn lỗi (Guards).
 
 Code:
 ```python
-while True:
-    # 1. Nhập tên (không để trống)
-    while True:
-        name = input("Tên: ").strip()
-        if name:
-            break
-        print("Tên không được để trống, vui lòng nhập lại!")
+name = input("Tên: ").strip()
+age_text = input("Tuổi: ").strip()
+ticket_type = input("Loại vé (standard/vip): ").strip().lower()
 
-    # 2. Nhập tuổi (phải là số nguyên không âm từ 0 đến 120)
-    while True:
-        age_text = input("Tuổi: ").strip()
-        if age_text.isdigit():
-            age = int(age_text)
-            if 0 <= age <= 120:
-                break
-            print("Tuổi phải nằm trong khoảng 0 đến 120, vui lòng nhập lại!")
-        else:
-            print("Tuổi cần là số nguyên không âm, vui lòng nhập lại!")
-
-    # 3. Nhập loại vé (chỉ nhận standard hoặc vip)
-    while True:
-        ticket_type = input("Loại vé (standard/vip): ").strip().lower()
-        if ticket_type in ("standard", "vip"):
-            break
-        print("Loại vé chỉ nhận 'standard' hoặc 'vip', vui lòng nhập lại!")
-
-    # 4. Phân loại vé và in kết quả
-    if age < 12:
+if not name:
+    print("Tên không được rỗng")
+elif not age_text.isdigit():
+    print("Tuổi cần là số nguyên không âm")
+else:
+    age = int(age_text)
+    if age > 120 or ticket_type not in ("standard", "vip"):
+        print("Input không hợp lệ")
+    elif age < 12:
         print(f"{name}: vé trẻ em")
     elif ticket_type == "vip":
         print(f"{name}: vé VIP")
     else:
         print(f"{name}: vé standard")
-
-    # 5. Hỏi người dùng muốn nhập tiếp không để tránh văng chương trình
-    tiep_tuc = input("\nBạn có muốn nhập vé tiếp theo không? (y/n): ").strip().lower()
-    if tiep_tuc != "y":
-        print("Đã kết thúc chương trình kiểm tra vé.")
-        break
-    print("-" * 35)
 ```
 
-Giải thuật:
-1. `while True:` cho từng ô nhập: Khi người dùng gõ sai (ví dụ tuổi gõ chữ "ed", hoặc loại vé gõ "de"), chương trình không dừng hay văng ra màn hình lệnh (terminal) mà in thông báo lỗi rõ ràng và yêu cầu nhập lại đúng ô đó cho đến khi hợp lệ (`break`).
-2. `name.strip()` và `if name:`: Loại bỏ khoảng trắng thừa, nếu người dùng chỉ nhấn Enter thì bắt nhập lại.
-3. `age_text.isdigit()` và `0 <= age <= 120`: Đảm bảo tuổi là số nguyên không âm và hợp lý về mặt sinh học.
-4. `ticket_type in ("standard", "vip")`: Chỉ chấp nhận đúng 2 loại vé được quy định.
-5. Vòng lặp ngoài cùng: Sau khi in vé xong, hỏi người dùng có muốn nhập tiếp vé cho người khác không (`y/n`). Nếu không thì thoát ra một cách lịch sự, không bị thoát đột ngột.
+Giải thuật (Kỹ thuật Guard-style validation):
+1. `name.strip()` và `if not name:`: Chặn lỗi tên rỗng hoặc toàn dấu cách ngay từ cửa đầu tiên.
+2. `elif not age_text.isdigit():`: Chặn trường hợp tuổi chứa chữ cái hoặc ký tự đặc biệt trước khi ép sang kiểu số nguyên `int()`.
+3. `else:`: Khi đã đảm bảo tuổi là chuỗi số, tiến hành chuyển đổi `age = int(age_text)` an toàn và chặn tuổi bất hợp lý (`age > 120`) cùng loại vé không hợp lệ (`ticket_type not in ("standard", "vip")`).
+4. Phân loại vé và in kết quả bằng f-string ngắn gọn, đúng trọng tâm kiến thức Tuần 03.
 
 ---
 

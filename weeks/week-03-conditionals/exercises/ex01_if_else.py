@@ -5,13 +5,7 @@ Mục tiêu: Viết câu lệnh điều kiện đúng cú pháp
 """
 
 # TODO 1: Nhập tuổi, in ra nhóm tuổi
-while True:
-    raw = input("Nhập tuổi: ").strip()
-    if raw.isdigit():
-        tuoi = int(raw)
-        break
-    print("Vui lòng nhập số tuổi hợp lệ!")
-
+tuoi = int(input("Nhập tuổi: "))
 if tuoi < 13:
     print("Thiếu nhi")
 elif tuoi <= 17:
@@ -23,16 +17,10 @@ else:
 # -> Kết quả mẫu (20): Người lớn
 
 # TODO 2: Nhập điểm (0-10), xếp loại
-while True:
-    try:
-        diem = float(input("Nhập điểm (0-10): "))
-        if 0 <= diem <= 10:
-            break
-        print("Điểm phải nằm trong thang 0 đến 10!")
-    except ValueError:
-        print("Vui lòng nhập điểm dạng số!")
-
-if diem >= 9:
+diem = float(input("Nhập điểm (0-10): "))
+if diem < 0 or diem > 10:
+    print("Điểm không hợp lệ")
+elif diem >= 9:
     print("Xuất sắc")
 elif diem >= 8:
     print("Giỏi")
@@ -45,13 +33,7 @@ else:
 # -> Kết quả mẫu (8.5): Giỏi
 
 # TODO 3: Nhập năm, kiểm tra năm nhuận
-while True:
-    raw = input("Nhập năm: ").strip()
-    if raw.isdigit():
-        nam = int(raw)
-        break
-    print("Vui lòng nhập năm dạng số nguyên!")
-
+nam = int(input("Nhập năm: "))
 if (nam % 4 == 0 and nam % 100 != 0) or (nam % 400 == 0):
     print("Năm nhuận")
 else:
@@ -59,16 +41,10 @@ else:
 # -> Kết quả mẫu (2024): Năm nhuận
 
 # TODO 4 (Thử thách): Nhập 3 số, in ra số lớn nhất
-def nhap_float(p: str) -> float:
-    while True:
-        try:
-            return float(input(p))
-        except ValueError:
-            print("Vui lòng nhập số hợp lệ!")
-
-a = nhap_float("Nhập số thứ nhất: ")
-b = nhap_float("Nhập số thứ hai: ")
-c = nhap_float("Nhập số thứ ba: ")
+# Không dùng hàm max(), chỉ dùng if/elif/else
+a = float(input("Nhập số thứ nhất: "))
+b = float(input("Nhập số thứ hai: "))
+c = float(input("Nhập số thứ ba: "))
 if a >= b and a >= c:
     so_lon_nhat = a
 elif b >= a and b >= c:
