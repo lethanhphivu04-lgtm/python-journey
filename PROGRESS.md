@@ -72,22 +72,22 @@ Learn → Build → Test → Debug → Improve → Commit → Prove
 
 ## Tuần 07 — Functions · Decomposition · Scope · Type hints
 
-- [ ] `def`, `return`, parameters
-- [ ] Default arguments
-- [ ] Scope
-- [ ] Chia bài toán thành các hàm nhỏ
-- [ ] Dùng type hints cơ bản
-- [ ] Giải thích được vì sao type hints không phải runtime validation
-- [ ] Hoàn thành utility toolkit
+- [x] `def`, `return`, parameters
+- [x] Default arguments
+- [x] Scope
+- [x] Chia bài toán thành các hàm nhỏ
+- [x] Dùng type hints cơ bản
+- [x] Giải thích được vì sao type hints không phải runtime validation
+- [x] Hoàn thành utility toolkit
 
 ## Tuần 08 — Dict · Set · Nested data · Data modeling
 
-- [ ] Dictionary cơ bản
-- [ ] Nested data
-- [ ] Set operations
-- [ ] Chọn cấu trúc dữ liệu phù hợp với bài toán
-- [ ] Mô hình dữ liệu trước khi nghĩ đến class
-- [ ] Hoàn thành mini-project tuần
+- [x] Dictionary cơ bản
+- [x] Nested data
+- [x] Set operations
+- [x] Chọn cấu trúc dữ liệu phù hợp với bài toán
+- [x] Mô hình dữ liệu trước khi nghĩ đến class
+- [x] Hoàn thành mini-project tuần
 
 ---
 

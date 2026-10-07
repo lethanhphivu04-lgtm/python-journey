@@ -5,11 +5,17 @@ LOCAL_ACTIONS = {"left", "right", "wait"}
 
 def choose_action(state: dict[str, int]) -> str:
     """Chọn một action local bằng 2–4 rules dễ giải thích."""
-    # TODO 1: đọc position và goal; dùng .get() cho field tùy chọn.
-    # TODO 2: nếu đã ở goal, trả "wait".
-    # TODO 3: thêm một rule khi opponent ở gần nếu bạn thấy hữu ích.
-    # TODO 4: đi "left" hoặc "right" về phía goal.
-    return "wait"
+    position = state.get("position", 0)
+    goal = state.get("goal", position)
+    opponent = state.get("opponent_position")
+
+    if position == goal:
+        return "wait"
+    if opponent is not None and abs(position - opponent) <= 1:
+        return "wait"
+    if position < goal:
+        return "right"
+    return "left"
 
 
 def main() -> None:

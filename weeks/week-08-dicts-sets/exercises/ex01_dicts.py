@@ -5,20 +5,25 @@ def cap_nhat_diem(
     scores: dict[str, float], subject: str, score: float
 ) -> dict[str, float]:
     """Trả một dict mới có điểm được thêm hoặc cập nhật."""
-    # TODO: copy scores, cập nhật subject rồi return bản mới.
-    return scores.copy()
+    updated = scores.copy()
+    updated[subject] = score
+    return updated
 
 
 def diem_trung_binh(scores: dict[str, float]) -> float:
     """Trả điểm trung bình, hoặc 0.0 nếu dict rỗng."""
-    # TODO: dùng values() và xử lý boundary case dict rỗng.
-    return 0.0
+    if not scores:
+        return 0.0
+    return sum(scores.values()) / len(scores)
 
 
 def dem_tan_suat(text: str) -> dict[str, int]:
     """Đếm tần suất ký tự, bỏ qua khoảng trắng."""
-    # TODO: dùng .get(character, 0) khi cập nhật count.
-    return {}
+    frequency: dict[str, int] = {}
+    for character in text:
+        if not character.isspace():
+            frequency[character] = frequency.get(character, 0) + 1
+    return frequency
 
 
 def main() -> None:

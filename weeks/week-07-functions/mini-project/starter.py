@@ -3,38 +3,48 @@
 
 def calculate_subtotal(price: float, quantity: int) -> float:
     """Return price multiplied by quantity."""
-    # TODO: Return 0 when quantity is not positive; otherwise calculate.
-    raise NotImplementedError("Complete calculate_subtotal")
+    if quantity <= 0:
+        return 0.0
+    return price * quantity
 
 
 def calculate_discount(subtotal: float, percent: float = 0) -> float:
     """Return the discount amount, not the final total."""
-    # TODO: Calculate a percentage of subtotal.
-    raise NotImplementedError("Complete calculate_discount")
+    return subtotal * percent / 100
 
 
 def calculate_average(scores: list[float]) -> float:
     """Return the average, or 0 for an empty list."""
-    # TODO: Handle the empty-list boundary before dividing.
-    raise NotImplementedError("Complete calculate_average")
+    if not scores:
+        return 0.0
+    return sum(scores) / len(scores)
 
 
 def classify_score(average: float) -> str:
     """Return a short classification for an average score."""
-    # TODO: Define a few clear ranges such as excellent, passed and practice more.
-    raise NotImplementedError("Complete classify_score")
+    if average >= 8.0:
+        return "Giỏi"
+    if average >= 5.0:
+        return "Đạt"
+    return "Cần luyện thêm"
 
 
 def format_currency(amount: float) -> str:
     """Return an amount formatted in đồng."""
-    # TODO: Use an f-string with thousands separators.
-    raise NotImplementedError("Complete format_currency")
+    return f"{amount:,.0f} đ"
 
 
 def main() -> None:
     """Compose the toolkit functions into a visible program flow."""
-    # TODO: Use outputs from calculation functions as later inputs.
-    print("Complete the toolkit, then replace this message with useful output.")
+    price, quantity, discount_pct = 50_000, 3, 10
+    subtotal = calculate_subtotal(price, quantity)
+    discount = calculate_discount(subtotal, discount_pct)
+    total = subtotal - discount
+    print(f"Hóa đơn: {format_currency(total)} (gốc {format_currency(subtotal)}, giảm {format_currency(discount)})")
+
+    scores = [8.5, 9.0, 7.5]
+    avg = calculate_average(scores)
+    print(f"Điểm TB: {avg:.2f} -> Xếp loại: {classify_score(avg)}")
 
 
 if __name__ == "__main__":

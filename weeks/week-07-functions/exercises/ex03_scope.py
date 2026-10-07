@@ -26,21 +26,28 @@ Self-check command:
 
 def them_ghi_chu(danh_sach: list[str], noi_dung: str) -> bool:
     """Thêm ghi chú hợp lệ và báo thao tác có thành công hay không."""
-    # TODO: Bỏ khoảng trắng hai đầu, từ chối nội dung rỗng, rồi append.
-    raise NotImplementedError("Hoàn thành hàm them_ghi_chu")
+    ghi_chu = noi_dung.strip()
+    if not ghi_chu:
+        return False
+    danh_sach.append(ghi_chu)
+    return True
 
 
 def tim_ghi_chu(danh_sach: list[str], tu_khoa: str) -> list[str]:
     """Trả về các ghi chú chứa từ khóa, không phân biệt hoa thường."""
-    # TODO: Tạo một result local rồi return result.
-    raise NotImplementedError("Hoàn thành hàm tim_ghi_chu")
+    tu_khoa_thuong = tu_khoa.lower()
+    return [g for g in danh_sach if tu_khoa_thuong in g.lower()]
 
 
 def dem_ghi_chu(danh_sach: list[str]) -> int:
     """Trả về số ghi chú trong list được truyền vào."""
-    # TODO: Không đọc một biến global.
-    raise NotImplementedError("Hoàn thành hàm dem_ghi_chu")
+    return len(danh_sach)
 
 
 if __name__ == "__main__":
-    print("Hoàn thành TODO và thử các hàm với một list local trong main.")
+    notes: list[str] = []
+    print("Thêm hợp lệ:", them_ghi_chu(notes, " Học return "))
+    print("Thêm rỗng:", them_ghi_chu(notes, "   "))
+    them_ghi_chu(notes, "Luyện scope")
+    print("Tìm 'return':", tim_ghi_chu(notes, "RETURN"))
+    print("Tổng số ghi chú:", dem_ghi_chu(notes))
