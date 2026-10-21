@@ -1,0 +1,332 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Vua Cóc Battle Arena — Đấu Trường Lập Trình & Game Trí Tuệ</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <!-- Header -->
+  <header class="site-header">
+    <div class="brand">
+      <div class="brand-icon">👑</div>
+      <div>
+        <h1 class="brand-title">Vua Cóc Battle Arena</h1>
+        <p class="brand-subtitle">Đấu trường trí tuệ mô phỏng theo vuacoc.com · Python Journey</p>
+      </div>
+    </div>
+    
+    <div class="header-controls">
+      <!-- Mode Switcher: 2D Pond vs 1D Classic Line -->
+      <div class="mode-switcher">
+        <button class="mode-btn active" id="btnMode2D">🪷 Đầm Sen 2D</button>
+        <button class="mode-btn" id="btnMode1D">📏 Đường Đua 1D</button>
+      </div>
+
+      <!-- Sound Toggle -->
+      <button class="sound-btn" id="btnSoundToggle" title="Bật/Tắt âm thanh">
+        <span id="soundIcon">🔊</span> Âm thanh
+      </button>
+    </div>
+  </header>
+
+  <main class="container">
+
+    <!-- Navigation Tabs -->
+    <nav class="tabs-nav" id="tabsNav">
+      <button class="tab-btn active" data-tab="singleplayer">🎮 Chơi Đơn (Vs AI)</button>
+      <button class="tab-btn" data-tab="pvp">👥 Đấu 2 Người (PvP)</button>
+      <button class="tab-btn" data-tab="duel">⚔️ Đấu Bot (AI vs AI)</button>
+      <button class="tab-btn" data-tab="tournament">🏆 Giải Đấu (Tournament)</button>
+      <button class="tab-btn" data-tab="editor">💻 Tự Viết Bot Python</button>
+    </nav>
+
+    <!-- Main Layout -->
+    <div class="arena-grid">
+
+      <!-- Left Column: Arena Board + Interactive Controls -->
+      <section class="main-stage">
+        
+        <!-- Game Board Card -->
+        <div class="card">
+          <div class="card-header">
+            <h2 class="card-title" id="boardTitle">🪷 Đầm Sen Đại Chiến 5x5</h2>
+            <div id="turnBadge" style="font-weight: 700; color: var(--primary);">Lượt: 1 / 15</div>
+          </div>
+          
+          <div class="card-body">
+
+            <!-- 2D Lotus Pond Arena View -->
+            <div id="view2D" class="pond-2d-wrapper">
+              <div class="grid-2d" id="grid2D">
+                <!-- 25 cells generated dynamically by JS -->
+              </div>
+            </div>
+
+            <!-- 1D Classic Track View (Hidden by default) -->
+            <div id="view1D" class="pond-container" style="display: none;">
+              <div class="board-track" id="boardTrack1D">
+                <!-- 5 pads generated dynamically -->
+              </div>
+            </div>
+
+            <!-- HUD Stats Bar -->
+            <div class="hud-bar">
+              <div class="player-score-card">
+                <span style="font-size: 24px;">🐸</span>
+                <div>
+                  <div style="font-size: 11px; font-weight: 700; color: var(--primary);">ẾCH XANH (A)</div>
+                  <div class="score-badge score-a" id="scoreA">0 Điểm</div>
+                </div>
+              </div>
+
+              <div id="aiThoughtDisplay" style="font-size: 12px; color: var(--text-muted); max-width: 260px; text-align: center; font-style: italic;">
+                "Chiến thuật: Săn ruồi vàng và tiến về đích!"
+              </div>
+
+              <div class="player-score-card">
+                <div style="text-align: right;">
+                  <div style="font-size: 11px; font-weight: 700; color: var(--accent);">ẾCH CAM (B)</div>
+                  <div class="score-badge score-b" id="scoreB">0 Điểm</div>
+                </div>
+                <span style="font-size: 24px;">🐸</span>
+              </div>
+            </div>
+
+            <!-- Status Banner -->
+            <div class="status-banner status-in_progress" id="statusBanner">
+              <span>Trận đấu đã sẵn sàng! Dùng bàn phím hoặc nút bấm để di chuyển.</span>
+            </div>
+
+            <!-- Replay Scrubber Slider -->
+            <div class="replay-scrubber" id="replayScrubber" style="display: none;">
+              <button class="timeline-btn" id="btnPrevTurn" title="Lượt trước">◀</button>
+              <input type="range" class="replay-slider" id="timelineSlider" min="0" max="15" value="0">
+              <button class="timeline-btn" id="btnNextTurn" title="Lượt kế">▶</button>
+              <button class="btn btn-secondary" id="btnPlayPause" style="padding: 5px 10px; font-size: 12px;">▶ Tự động</button>
+              <button class="btn btn-secondary" id="btnDownloadReplay" style="padding: 5px 10px; font-size: 12px;">📥 Xuất JSON</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Mode Panel 1: Single Player (Human vs AI) -->
+        <div class="card mode-panel" id="panelSingle">
+          <div class="card-header">
+            <h3 class="card-title">🕹️ Điều Khiển Ếch A (Phím WASD hoặc Mũi Tên)</h3>
+            <div class="control-row" style="margin-bottom: 0;">
+              <select id="selectAIDifficulty" class="select-control">
+                <option value="smart" selected>🥇 Vua Cóc Tối Thượng (A* Smart AI)</option>
+                <option value="cautious">🥈 Cóc Thận Trọng (Cautious)</option>
+                <option value="forward">🥉 Cóc Tập Nhảy (Novice)</option>
+              </select>
+              <button class="btn btn-secondary" id="btnNewGame">🔄 Ván mới</button>
+            </div>
+          </div>
+          <div class="card-body">
+            <p style="font-size: 13px; color: var(--text-muted); margin-bottom: 8px;">
+              Mục tiêu: Ăn <strong>Ruồi Vàng (+10đ)</strong> và chạm <strong>Đích (+50đ)</strong>. Tránh đụng phải <strong>Đá Ngầm 🪨</strong>!
+            </p>
+
+            <!-- Virtual D-pad for 2D -->
+            <div class="dpad-container" id="dpad2D">
+              <div></div>
+              <button class="dpad-btn" id="btnUp" title="Lên (W / ↑)">⬆️</button>
+              <div></div>
+              <button class="dpad-btn" id="btnLeft" title="Trái (A / ←)">⬅️</button>
+              <button class="dpad-btn" id="btnWait" title="Đứng yên (Space / S)">⏸️</button>
+              <button class="dpad-btn" id="btnRight" title="Phải (D / →)">➡️</button>
+              <div></div>
+              <button class="dpad-btn" id="btnDown" title="Xuống (S / ↓)">⬇️</button>
+              <div></div>
+            </div>
+
+            <!-- Virtual 1D buttons (shown only in 1D mode) -->
+            <div class="control-row" id="controls1D" style="display: none; justify-content: center; margin-top: 10px;">
+              <button class="btn btn-secondary" id="btn1DLeft">👈 Sang Trái (left)</button>
+              <button class="btn btn-secondary" id="btn1DWait">⏸️ Đứng Yên (wait)</button>
+              <button class="btn btn-secondary" id="btn1DRight">👉 Sang Phải (right)</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Mode Panel 2: 2-Player Local PvP -->
+        <div class="card mode-panel" id="panelPvP" style="display: none;">
+          <div class="card-header">
+            <h3 class="card-title">👥 Đấu 2 Người Trên 1 Bàn Phím</h3>
+            <button class="btn btn-secondary" id="btnResetPvP">🔄 Đấu Lại</button>
+          </div>
+          <div class="card-body">
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-bottom: 12px;">
+              <div style="background: var(--primary-light); padding: 12px; border-radius: 8px;">
+                <strong style="color: var(--primary-dark);">🟢 Người 1 (Ếch A):</strong>
+                <p style="font-size: 13px; margin-top: 4px;">Dùng phím <strong>W, A, S, D</strong> để di chuyển và phím <strong>Space</strong> để đứng yên.</p>
+              </div>
+              <div style="background: var(--accent-light); padding: 12px; border-radius: 8px;">
+                <strong style="color: var(--accent);">🟠 Người 2 (Ếch B):</strong>
+                <p style="font-size: 13px; margin-top: 4px;">Dùng các phím <strong>Mũi tên (↑, ↓, ←, →)</strong> và phím <strong>Enter/Số 0</strong> để đứng yên.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Mode Panel 3: Bot vs Bot Duel -->
+        <div class="card mode-panel" id="panelDuel" style="display: none;">
+          <div class="card-header">
+            <h3 class="card-title">⚔️ Đấu Trường AI (Bot vs Bot)</h3>
+          </div>
+          <div class="card-body">
+            <div class="control-row">
+              <div style="flex: 1;">
+                <label style="font-size: 12px; font-weight: 700; color: var(--primary);">ẾCH A (Bên Trái):</label>
+                <select id="selectBotA" class="select-control" style="width: 100%; margin-top: 4px;">
+                  <option value="forward">Forward Bot</option>
+                  <option value="cautious">Cautious Bot</option>
+                  <option value="wait">Wait Bot</option>
+                  <option value="student">Student Bot</option>
+                  <option value="custom">Bot tự viết của bạn</option>
+                </select>
+              </div>
+              <div style="flex: 1;">
+                <label style="font-size: 12px; font-weight: 700; color: var(--accent);">ẾCH B (Bên Phải):</label>
+                <select id="selectBotB" class="select-control" style="width: 100%; margin-top: 4px;">
+                  <option value="cautious" selected>Cautious Bot</option>
+                  <option value="forward">Forward Bot</option>
+                  <option value="wait">Wait Bot</option>
+                  <option value="student">Student Bot</option>
+                  <option value="custom">Bot tự viết của bạn</option>
+                </select>
+              </div>
+            </div>
+            <div class="control-row" style="margin-top: 14px;">
+              <button class="btn btn-primary" id="btnStartDuel">🚀 Bắt Đầu Đấu (Xem hoạt họa)</button>
+              <button class="btn btn-secondary" id="btnInstantDuel">⚡ Xem Kết Quả Ngay</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Mode Panel 4: Tournament -->
+        <div class="card mode-panel" id="panelTournament" style="display: none;">
+          <div class="card-header">
+            <h3 class="card-title">🏆 Giải Đấu Cúp Vua Cóc (Championship)</h3>
+            <button class="btn btn-primary" id="btnRunTournament">▶ Chạy Toàn Bộ Giải Đấu</button>
+          </div>
+          <div class="card-body">
+            <div id="tournamentSummary" style="display: none; margin-bottom: 14px;"></div>
+            <div class="table-wrap">
+              <table class="data-table" id="tournamentTable">
+                <thead>
+                  <tr>
+                    <th>Đối Thủ</th>
+                    <th>Ghế Của Bạn</th>
+                    <th>Kết Quả</th>
+                    <th>Số Lượt</th>
+                    <th>Hợp Lệ</th>
+                    <th>Lý Do Kết Thúc</th>
+                  </tr>
+                </thead>
+                <tbody id="tournamentTableBody">
+                  <tr>
+                    <td colspan="6" style="text-align: center; color: var(--text-muted); padding: 20px;">
+                      Nhấn "Chạy Toàn Bộ Giải Đấu" để xem kết quả xếp hạng.
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+
+        <!-- Mode Panel 5: Code Editor -->
+        <div class="card mode-panel" id="panelEditor" style="display: none;">
+          <div class="card-header">
+            <h3 class="card-title">💻 Lập Trình Bot Python Của Riêng Bạn</h3>
+            <div class="control-row" style="margin-bottom: 0;">
+              <button class="btn btn-secondary" id="btnResetCode">Mẫu Mặc Định</button>
+              <button class="btn btn-primary" id="btnTestCode">🧪 Kiểm Tra Code</button>
+            </div>
+          </div>
+          <div class="card-body">
+            <p style="font-size: 13px; color: var(--text-muted); margin-bottom: 8px;">
+              Định nghĩa hàm <code>choose_action(state)</code> trả về hành động: <code>"left"</code>, <code>"right"</code> hoặc <code>"wait"</code>.
+            </p>
+            <textarea class="code-editor-area" id="customBotCode">def choose_action(state: dict[str, int]) -> str:
+    """Bot thong minh cua toi."""
+    pos = state["position"]
+    goal = state["goal"]
+    opp_pos = state["opponent_position"]
+
+    # Neu dang o gan dich hon thi tien toi dich
+    if pos < goal:
+        return "right"
+    elif pos > goal:
+        return "left"
+    return "wait"
+</textarea>
+            <div id="codeFeedback" style="margin-top: 10px; font-size: 13px; display: none;"></div>
+          </div>
+        </div>
+
+      </section>
+
+      <!-- Right Column: Sidebar Match History & Rules -->
+      <aside class="sidebar">
+
+        <!-- Match Info & Turn History -->
+        <div class="card">
+          <div class="card-header">
+            <h3 class="card-title">📜 Nhật Ký Trận Đấu (Turn Log)</h3>
+          </div>
+          <div class="card-body" style="padding: 0;">
+            <div class="table-wrap" style="max-height: 380px;">
+              <table class="data-table" id="turnLogTable">
+                <thead>
+                  <tr>
+                    <th>Lượt</th>
+                    <th>Ếch A</th>
+                    <th>Ếch B</th>
+                    <th>Điểm / Vị Trí</th>
+                  </tr>
+                </thead>
+                <tbody id="turnLogBody">
+                  <tr>
+                    <td colspan="4" style="text-align: center; color: var(--text-muted); padding: 18px;">
+                      Bắt đầu trận đấu để ghi nhận diễn biến.
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+
+        <!-- Rules Quickcard -->
+        <div class="card">
+          <div class="card-header">
+            <h3 class="card-title">📖 Luật Đấu Vua Cóc</h3>
+          </div>
+          <div class="card-body" style="font-size: 13px; color: var(--text-muted);">
+            <ul style="padding-left: 18px; display: flex; flex-direction: column; gap: 8px;">
+              <li><strong>Đầm Sen 2D (5x5):</strong> Ếch A từ góc <code>(0,0)</code> đến <code>(4,4)</code>; Ếch B từ <code>(4,4)</code> về <code>(0,0)</code>.</li>
+              <li><strong>Ruồi Vàng 🪰:</strong> Ăn được cộng <strong>+10 điểm</strong>.</li>
+              <li><strong>Chạm Đích 🪷:</strong> Cộng ngay <strong>+50 điểm</strong> và kết thúc trận.</li>
+              <li><strong>Đá Ngầm 🪨:</strong> Không thể nhảy qua, cần đi vòng.</li>
+              <li><strong>Âm Thanh Sống Động:</strong> Bật/tắt bằng nút ở góc trên.</li>
+            </ul>
+          </div>
+        </div>
+
+      </aside>
+
+    </div>
+
+  </main>
+
+  <footer class="site-footer">
+    <p>Vua Cóc Battle Arena · Thiết kế theo chuẩn giáo trình Python Journey V2 · Hoàn toàn độc lập & mã nguồn mở.</p>
+  </footer>
+
+  <script src="game.js"></script>
+</body>
+</html>

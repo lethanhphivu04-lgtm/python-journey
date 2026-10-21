@@ -93,14 +93,14 @@ Learn → Build → Test → Debug → Improve → Commit → Prove
 
 # 🏆 Tuần 09 — Midterm Project
 
-- [ ] Chọn vấn đề và phạm vi
-- [ ] Phác thảo dữ liệu
-- [ ] Chia logic thành hàm
-- [ ] Hoàn thành luồng chính
-- [ ] Thử input bất thường
-- [ ] Viết README ngắn
-- [ ] Có Git history hợp lý
-- [ ] Demo và giải thích được code
+- [x] Chọn vấn đề và phạm vi
+- [x] Phác thảo dữ liệu
+- [x] Chia logic thành hàm
+- [x] Hoàn thành luồng chính
+- [x] Thử input bất thường
+- [x] Viết README ngắn
+- [x] Có Git history hợp lý
+- [x] Demo và giải thích được code
 
 ---
 
@@ -108,12 +108,12 @@ Learn → Build → Test → Debug → Improve → Commit → Prove
 
 ## Tuần 10 — File · pathlib · CSV · JSON
 
-- [ ] Đọc/ghi text file
-- [ ] Dùng context manager
-- [ ] Dùng `pathlib`
-- [ ] Đọc/ghi CSV
-- [ ] Đọc/ghi JSON
-- [ ] Xử lý file chưa tồn tại hoặc dữ liệu lỗi hợp lý
+- [x] Đọc/ghi text file
+- [x] Dùng context manager
+- [x] Dùng `pathlib`
+- [x] Đọc/ghi CSV
+- [x] Đọc/ghi JSON
+- [x] Xử lý file chưa tồn tại hoặc dữ liệu lỗi hợp lý
 
 ## Tuần 11 — Exceptions · Tracebacks · Debugging · Defensive coding
 
@@ -138,15 +138,15 @@ Learn → Build → Test → Debug → Improve → Commit → Prove
 
 ## Tuần 13 — Modules · Packages · Dependencies · CLI · API/HTTP
 
-- [ ] Import module chuẩn
-- [ ] Tạo module riêng
-- [ ] Hiểu package ở mức cơ bản
-- [ ] Dùng venv + `python -m pip`
-- [ ] Hiểu vai trò của `pyproject.toml`
-- [ ] Nhận CLI argument cơ bản
-- [ ] Gọi HTTP GET
-- [ ] Đọc status code và JSON response
-- [ ] Xử lý network error/timeout ở mức cơ bản
+- [x] Import module chuẩn
+- [x] Tạo module riêng
+- [x] Hiểu package ở mức cơ bản
+- [x] Dùng venv + `python -m pip`
+- [x] Hiểu vai trò của `pyproject.toml`
+- [x] Nhận CLI argument cơ bản
+- [x] Gọi HTTP GET
+- [x] Đọc status code và JSON response
+- [x] Xử lý network error/timeout ở mức cơ bản
 
 ## Tuần 14 — OOP Essentials · Composition · Basic inheritance
 

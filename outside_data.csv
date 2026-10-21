@@ -1,0 +1,6 @@
+order_id,product,quantity,unit_price,customer
+DH001,Laptop Dell,1,18500000,Nguyen Van A
+DH002,Chuot khong day,2,250000,Tran Thi B
+DH003,Ban phim co,1,1200000,Le Van C
+DH004,Tai nghe Bluetooth,2,850000,Pham Thi D
+DH005,Man hinh 27 inch,1,4500000,Nguyen Van A
