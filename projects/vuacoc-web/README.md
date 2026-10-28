@@ -24,9 +24,17 @@
 
 ---
 
-## 🚀 Cách Khởi Chạy
+## Setup and Installation
 
-Ứng dụng được viết **100% bằng thư viện chuẩn của Python** (không cần cài thêm Flask, Django hay bất kỳ thư viện ngoài nào).
+Ứng dụng được viết **100% bằng thư viện chuẩn của Python** (không cần cài thêm Flask, Django hay bất kỳ thư viện ngoài nào). Yêu cầu Python >= 3.12.
+
+```bash
+python --version
+```
+
+## Usage and Running
+
+Khởi chạy máy chủ cục bộ:
 
 ```bash
 python projects/vuacoc-web/app.py
@@ -35,6 +43,20 @@ python projects/vuacoc-web/app.py
 Mở trình duyệt web và truy cập địa chỉ:
 👉 **[http://localhost:8080](http://localhost:8080)**
 
+## Test and Verification
+
+Chạy bộ kiểm thử tự động cho Web App bằng pytest:
+
+```bash
+pytest projects/vuacoc-web/tests -v
+```
+
+Kiểm tra độ sẵn sàng Capstone:
+
+```bash
+python weeks/week-15-capstone-project/checks/check_capstone_readiness.py projects/vuacoc-web
+```
+
 ---
 
 ## 🏗️ Kiến Trúc Hệ Thống
@@ -42,9 +64,17 @@ Mở trình duyệt web và truy cập địa chỉ:
 ```text
 projects/vuacoc-web/
 ├── app.py              # Backend HTTP Server & REST API (Python stdlib)
-├── README.md           # Hướng dẫn sử dụng
+├── README.md           # Hướng dẫn sử dụng (setup, usage, test)
+├── AI_USAGE.md         # Bản giải trình AI theo mẫu chuẩn
+├── tests/              # Bộ kiểm thử tự động pytest
+│   ├── conftest.py
+│   └── test_web_app.py
 └── static/
     ├── index.html      # Cấu trúc giao diện Đấu trường
     ├── style.css       # Giao diện bàn cờ tự nhiên, nhã nhặn
     └── game.js         # Logic điều khiển, hoạt họa và tương tác
 ```
+
+## AI Usage
+
+Xem chi tiết tại file [`AI_USAGE.md`](AI_USAGE.md).

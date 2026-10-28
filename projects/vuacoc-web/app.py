@@ -9,7 +9,6 @@ Ho tro ca 2 che do:
 from __future__ import annotations
 
 import json
-import math
 import mimetypes
 import random
 import sys
@@ -17,7 +16,7 @@ import traceback
 from http import HTTPStatus
 from http.server import BaseHTTPRequestHandler, ThreadingHTTPServer
 from pathlib import Path
-from urllib.parse import parse_qs, urlparse
+from urllib.parse import urlparse
 
 # Ket noi voi local_arena cua vuacoc-bot-journey
 REPO_ROOT = Path(__file__).resolve().parents[2]
@@ -41,6 +40,45 @@ from local_arena.tournament import evaluate_bot, summarize_results  # noqa: E402
 from student_bot.bot import choose_action as student_action  # noqa: E402
 
 STATIC_DIR = Path(__file__).resolve().parent / "static"
+
+BOT_REGISTRY = {
+    "student": {
+        "name": "Student Bot",
+        "desc": "Bot của học viên với chiến thuật thông minh, né va chạm và tiến về đích.",
+        "fn": student_action,
+    },
+    "forward": {
+        "name": "Forward Bot",
+        "desc": "Luôn tiến thẳng về đích, không quan tâm đối thủ.",
+        "fn": forward_action,
+    },
+    "cautious": {
+        "name": "Cautious Bot",
+        "desc": "Tiến về đích nhưng dừng chờ nếu đối thủ ở cự ly gần (<= 1).",
+        "fn": cautious_action,
+    },
+    "wait": {
+        "name": "Wait Bot",
+        "desc": "Luôn đứng yên tại chỗ.",
+        "fn": wait_action,
+    },
+}
+
+
+def create_custom_bot(code: str):
+    """Biên dịch mã code Python tự viết của người dùng thành hàm choose_action."""
+    if not code or not code.strip():
+        return None, "Mã code trống."
+    scope: dict = {}
+    try:
+        compiled = compile(code, "<custom_bot>", "exec")
+        exec(compiled, scope)
+    except Exception as e:
+        return None, f"Lỗi cú pháp Python: {e}"
+    if "choose_action" not in scope or not callable(scope["choose_action"]):
+        return None, "Thiếu hàm choose_action(state)."
+    return scope["choose_action"], None
+
 
 # ==============================================================================
 # 2D POND ARENA ENGINE & SMART AI
@@ -372,7 +410,7 @@ class VuaCocHandler(BaseHTTPRequestHandler):
             view_b = bot_view(current_state, "B", turn, max_turns)
             try:
                 bot_b_action = opponent_fn(view_b)
-            except Exception as e:
+            except Exception:
                 bot_b_action = "wait"
 
             # Áp dụng chuyển trạng thái

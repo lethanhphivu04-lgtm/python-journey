@@ -6,6 +6,7 @@ LOCAL_ACTIONS = {"left", "right", "wait"}
 def choose_action(position: int, goal: int) -> str:
     if position == goal:
         return "wait"
+
     return "right" if position < goal else "left"
 
 

@@ -127,14 +127,14 @@ Learn → Build → Test → Debug → Improve → Commit → Prove
 
 ## Tuần 12 — Testing with pytest
 
-- [ ] Hiểu automated test dùng để làm gì
-- [ ] Viết `assert`
-- [ ] Viết test function với `pytest`
-- [ ] Dùng Arrange → Act → Assert
-- [ ] Test normal case
-- [ ] Test edge case
-- [ ] Test invalid input
-- [ ] Đọc test failure và sửa implementation
+- [x] Hiểu automated test dùng để làm gì
+- [x] Viết `assert`
+- [x] Viết test function với `pytest`
+- [x] Dùng Arrange → Act → Assert
+- [x] Test normal case
+- [x] Test edge case
+- [x] Test invalid input
+- [x] Đọc test failure và sửa implementation
 
 ## Tuần 13 — Modules · Packages · Dependencies · CLI · API/HTTP
 
